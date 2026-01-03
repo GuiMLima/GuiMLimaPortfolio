@@ -1,54 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio GUiMLima</title>
     <style>
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
         body {
             background-color: black;
             color: aliceblue;
+            font-family: 'Courier New', Courier, monospace;
         }
-        div {
-            background-color: black;
-            width: 300px;
-            height: 300px;
-            margin-bottom: 5px;
+
+        #Lima_Description > h1 {
+            font-size: 60px;
+        }
+
+        #Lima_Description > h2 {
+            font-size: 20px;
+        }
+
+        #Lima_Description > p {
+            font-size: 20px;
+        }
+
+        #GuiMLima_Icon {
+            height: 125px;
         }
 
         div#tres {
             background-color: aqua;
         }
+
+        #sobre {
+            background: url(images/Fundo\ Portfolio.png) no-repeat;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+        }
+
+        #Lima_Description {
+            width: 55%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #Nav_Bar {
+            display: flex;
+            position: fixed;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 50px;
+            box-sizing: border-box;
+            background-color: #749fc0;
+            overflow: hidden;
+            top: 0;
+            bottom: 0;
+            height: 80px;
+            width: 100%;
+        }
+
+        #Description_Links {
+            margin-top: 20px;
+        }
+
+        .Link_Image {
+            height: 145px;
+        }
+
+        .Link_Image:hover {
+            background-color: #749fc0;
+            border-radius: 50%;
+        }
+
+        #Nav_Bar > a {
+            font-family: sans-serif;
+            font-size: 30px;
+            font-weight: bolder;
+            text-decoration: none;
+            color: white;
+        }
+
+        #Nav_Bar > a:hover {
+            font-size: 32px;
+            color: rgb(238, 253, 255);
+            transition: 0.5s;
+        }
+
+        header {
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+
     </style>
 </head>
 <body>
-    <header id="sobre">
-        <nav>
+    <nav id="Nav_Bar">
+            <a href="#sobre"><img src="images/GuiMLima_Icon.png" alt="" id="GuiMLima_Icon"></a>
             <a href="#sobre">Sobre</a>
             <a href="#projects_abilities" rel="noopener noreferrer">Projetos</a>
             <a href="#contact">Contato</a>
-        </nav>
-        <h1>Guilherme M.Lima</h1>
-        <h2>Future Back-end Developer | Computer Vision Student</h2>
-        <p>Estou em busca de me especializar em tratamento de dados com o uso de Visão Computacional. Acredito que nossos olhos podem ver muito além com o uso da Inteligência Artificial</p>
-        <nav>
-            <a href="">GitHub</a>
-            <a href="">Linkedin</a>
-            <a href="">Curriculo</a>
-        </nav>
+    </nav>
+    <header id="sobre">
+        <div id="Lima_Description">
+            <h1>Guilherme M.Lima</h1>
+            <h2>Future Back-end Developer | Computer Vision Student</h2>
+            <p>Busco me especializar na interseção entre Visão Computacional e Ciência de Dados. Acredito que a Inteligência Artificial é a ferramenta definitiva para estender a percepção humana e revelar insights que nossos olhos sozinhos não alcançam.</p>
+            <nav id="Description_Links">
+                <a href="https://github.com/GuiMLima" target="_blank">
+                    <img src="images/Github_Icon.png" alt="" id="Git_Link" class="Link_Image">
+                </a>
+                <a href="https://www.linkedin.com/in/guilherme-marques-de-lima-0b5361219/" target="_blank">
+                    <img src="images/Linkedin_Icon.png" alt="" class="Link_Image">
+                </a>
+                <a href="" download="curriculo.pdf">
+                    <img src="images/CV_Icon.png" alt="" class="Link_Image">
+                </a>
+            </nav>
+        </div>
+        <div id="image">
+            <img src="images/HandsomeGuy_Picture.png" alt="">
+        </div>
     </header>
     <main>
         <section id="projects_abilities">
             <h1>Projetos e Habilidades</h1>
-            <div id="imagem" style="color: brown; width: 300px; height: 300px; background-color: white;"></div>
+            <div class="project">
             <p>Em andamento</p>
             <p>Ver meu trabalho</p>
-            <h2>Danfe-cv-scanner</h2>
-            <p>Sistema de Visão Computacional para leitura de código de barras (DANFE) em tempo real, integrando via API para validação de pedidos logísticos.</p>
+            <h2>QrCode-cv-scanner</h2>
+            <p>Sistema de Visão Computacional para leitura de QrCodes em tempo real, integrando via API para validação de pedidos logísticos.</p>
             <h2>Linguagens</h2>
             <p>Python</p>
             <h2>Ferramentas</h2>
             <p>OpenCV</p>
+            </div>
         </section>
         <section id="academic_profile">
             <h1>Perfil Acadêmico</h1>
