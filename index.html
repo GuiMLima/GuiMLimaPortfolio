@@ -17,41 +17,16 @@
             font-family: sans-serif;
         }
 
-        #Lima_Description>h1 {
-            font-size: 60px;
-        }
-
-        #Lima_Description>h2 {
-            font-size: 20px;
-        }
-
-        #Lima_Description>p {
-            margin-top: 5px;
-            font-size: 28px;
-            font-family: serif;
-        }
 
         #GuiMLima_Icon {
             height: 125px;
         }
 
-        #sobre {
-            background: url(images/Fundo\ Portfolio.png) no-repeat;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            height: 600px;
-        }
-
-        #Lima_Description {
-            width: 55%;
-        }
-
         a {
             text-decoration: none;
         }
+
+        /*Navigation Bar Section*/
 
         #Nav_Bar {
             display: flex;
@@ -68,19 +43,7 @@
             z-index: 1000;
         }
 
-        #Description_Links {
-            margin-top: 2px;
-        }
-
-        .Link_Image {
-            height: 145px;
-        }
-
-        .Link_Image:hover {
-            background-color: #749fc0;
-            border-radius: 50%;
-        }
-
+        /* Estilo dos links de texto na barra de navegação / Style of text links in the navigation bar */
         #Nav_Bar>a {
             font-family: sans-serif;
             font-size: 30px;
@@ -89,25 +52,87 @@
             color: white;
         }
 
+        /* Aumenta o tamanho e muda a cor dos links da navegação ao passar o mouse / Increases size and changes color of nav links on hover */
         #Nav_Bar>a:hover {
             font-size: 32px;
             color: rgb(238, 253, 255);
             transition: 0.5s;
         }
 
+        /*---------------------------------------------*/
+
+
+        /*Main Section*/
+        /* Espaçamento superior para o cabeçalho não ficar escondido pela barra fixa / Top spacing so header isn't hidden by fixed bar */
         header {
             margin-top: 70px;
             padding: 20px;
         }
 
+        /* Seção 'Sobre' com imagem de fundo e layout flexível / 'About' section with background image and flex layout */
+        #sobre {
+            background: url(images/Fundo\ Portfolio.png) no-repeat;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            height: 600px;
+        }
+
+        /* Container da descrição textual do perfil / Profile textual description container */
+        #Lima_Description {
+            width: 55%;
+        }
+
+        /* Estilo do título principal na descrição / Main title style in description */
+        #Lima_Description>h1 {
+            font-size: 60px;
+        }
+
+        /* Estilo do subtítulo na descrição / Subtitle style in description */
+        #Lima_Description>h2 {
+            font-size: 20px;
+        }
+
+        /* Estilo do parágrafo de descrição / Description paragraph style */
+        #Lima_Description>p {
+            margin-top: 5px;
+            font-size: 28px;
+            font-family: serif;
+        }
+
+        /* Container para os links de contato na descrição / Container for contact links in description */
+        #Description_Links {
+            margin-top: 2px;
+        }
+
+        /* Define a altura das imagens dos links / Sets the height of link images */
+        .Link_Image {
+            height: 145px;
+        }
+
+        /* Efeito ao passar o mouse sobre as imagens dos links / Hover effect on link images */
+        .Link_Image:hover {
+            background-color: #749fc0;
+            border-radius: 50%;
+        }
+
+        /*---------------------------------------------*/
+
+        /*Projects Section*/
+
+        /* Espaçamento interno da seção de projetos e habilidades / Padding for projects and abilities section */
         #projects_abilities {
             padding: 20px;
         }
 
+        /* Tamanho da fonte do título da seção de projetos / Font size for projects section title */
         #projects_abilities>h1 {
             font-size: 120px;
         }
 
+        /* Container flexível para os itens do projeto / Flex container for project items */
         .project {
             display: flex;
             flex-direction: row;
@@ -115,91 +140,102 @@
             flex-wrap: wrap;
         }
 
+        /* Container da imagem do projeto com posicionamento relativo / Project image container with relative positioning */
         .project_Image {
             width: 45%;
-
+            position: relative;
         }
 
-        .project_Image_Text {
-            display: flex;
-            overflow: hidden;
-            top: 0;
-            bottom: 0;
+        /* Estilo da imagem do projeto com bordas arredondadas / Project image style with rounded corners */
+        .project_Image>img {
+            display: block;
             width: 100%;
-            justify-content: space-between;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        /* Camada de sobreposição escura e transparente (inicialmente oculta) / Dark transparent overlay layer (initially hidden) */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: rgba(50, 71, 87, 0.9);
+            overflow: hidden;
+            transition: height 0.5s ease;
+            display: flex;
+            justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
-        .project_Image_Text>p {
-            font-size: 30px;
-            padding-bottom: 10px;
-            font-weight: bolder;
+        /* Expande a sobreposição para 50% da altura ao passar o mouse na imagem / Expands overlay to 50% height on image hover */
+        .project_Image:hover .overlay {
+            height: 50%;
         }
 
+        /* Estilo do link 'Veja meu trabalho' dentro da sobreposição / Style of 'See my work' link inside overlay */
+        .text_Link {
+            color: white;
+            font-size: 24px;
+            /* Slightly larger for visibility */
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
+        /* Container da descrição textual do projeto / Container for project textual description */
         .project_Description {
             width: 50%;
         }
 
+        /* Tamanho do título do projeto / Project title size */
         .project_Description>h2 {
             font-size: 50px;
         }
 
+        /* Tamanho do texto de descrição do projeto / Project description text size */
         .project_Description>p {
             font-size: 30px;
         }
 
-        .project_Image>img {
-            max-width: 100%;
-            border-radius: 15px;
-            height: auto;
-        }
 
-        .text_Link {
-            background-color: white;
-            color: #324757;
-            border-radius: 50px;
-            font-size: 30px;
-            font-weight: bolder;
-            padding: 8px;
-        }
+        /*---------------------------------------------*/
 
-        .text_Link:hover {
-            background-color: #324757;
-            color: white;
-            border-radius: 50px;
-            font-weight: bolder;
-            padding-left: 10px;
-            padding-right: 10px;
-            transition: 0.5s;
-        }
-
+        /*Academic Profile Section*/
+        /* Seção de Perfil Acadêmico / Academic Profile Section */
         #academic_profile {
             background-color: rgb(255, 255, 255);
             color: #324757;
             padding: 10px;
         }
 
+        /* Título do Perfil Acadêmico / Academic Profile Title */
         #academic_profile>h1 {
             font-size: 150px;
         }
 
+        /* Container flexível para a linha do tempo horizontal / Flex container for horizontal timeline */
         .horizontal_timeline {
             display: flex;
             justify-content: space-between;
         }
 
+        /* Título das seções da linha do tempo (Graduação, Cursos) / Title of timeline sections */
         .timeline-section>h2 {
             font-size: 75px;
         }
 
         /* Horizontal Timeline CSS */
+        /* Seção individual da linha do tempo / Individual timeline section */
         .timeline-section {
             margin-bottom: 40px;
             width: 45%;
             justify-content: space-between;
         }
 
+        /* Container com rolagem horizontal para os itens da linha do tempo / Horizontally scrolling container for timeline items */
         .timeline-container {
             width: 100%;
             overflow-x: auto;
@@ -211,21 +247,24 @@
             box-sizing: border-box;
         }
 
-        /* Scrollbar styling for Webkit */
+        /* Estilo da barra de rolagem (Webkit) / Scrollbar styling (Webkit) */
         .timeline-container::-webkit-scrollbar {
             height: 8px;
         }
 
+        /* Trilha da barra de rolagem / Scrollbar track */
         .timeline-container::-webkit-scrollbar-track {
             background: #324757;
             border-radius: 4px;
         }
 
+        /* Parte móvel da barra de rolagem / Scrollbar thumb */
         .timeline-container::-webkit-scrollbar-thumb {
             background: #324757;
             border-radius: 4px;
         }
 
+        /* Lista de itens na linha do tempo / List of items in the timeline */
         .timeline-list {
             display: inline-flex;
             gap: 30px;
@@ -233,7 +272,7 @@
             position: relative;
         }
 
-        /* Continuous line behind items */
+        /* Linha contínua conectando os itens / Continuous line connecting items */
         .timeline-list::before {
             content: '';
             position: absolute;
@@ -245,6 +284,7 @@
             z-index: 0;
         }
 
+        /* Item individual na linha do tempo / Individual item in the timeline */
         .timeline-item {
             display: inline-block;
             width: 300px;
@@ -254,6 +294,7 @@
             vertical-align: top;
         }
 
+        /* Ponto marcador na linha do tempo / Marker dot on the timeline */
         .timeline-dot {
             width: 20px;
             height: 20px;
@@ -265,6 +306,7 @@
             position: relative;
         }
 
+        /* Conteúdo do cartão da linha do tempo (texto) / Timeline card content (text) */
         .timeline-content {
             background: rgb(255, 255, 255);
             padding: 20px;
@@ -274,11 +316,12 @@
             transition: transform 0.3s ease;
         }
 
+        /* Efeito de elevação ao passar o mouse no cartão / Lift effect on card hover */
         .timeline-content:hover {
             transform: translateY(-5px);
         }
 
-        /* Arrow pointing up to the line */
+        /* Seta apontando para o ponto da linha do tempo / Arrow pointing to the timeline dot */
         .timeline-content::before {
             content: '';
             position: absolute;
@@ -289,6 +332,7 @@
             border-color: transparent transparent white transparent;
         }
 
+        /* Ano do evento / Event year */
         .timeline-year {
             color: #749fc0;
             font-weight: bold;
@@ -296,6 +340,7 @@
             margin-bottom: 15px;
         }
 
+        /* Título do evento / Event title */
         .timeline-title {
             color: #324757;
             font-size: 20px;
@@ -304,6 +349,7 @@
             display: block;
         }
 
+        /* Subtítulo do evento (instituição/local) / Event subtitle (institution/location) */
         .timeline-subtitle {
             font-size: 18px;
             color: #666;
@@ -311,45 +357,53 @@
             display: block;
         }
 
+        /* Descrição detalhada do evento / Detailed event description */
         .timeline-desc {
             font-size: 15px;
             color: #333;
             line-height: 20px;
         }
 
+        /* Seção de Carreira (layout flexível) / Career Section (flex layout) */
         #career {
             display: flex;
         }
 
+        /* Lado esquerdo da seção de carreira (Timeline) / Left side of career section (Timeline) */
         #career_progress {
             padding: 10px;
             background-color: #324757;
             width: 60%;
         }
 
+        /* Título da seção de carreira / Career section title */
         #career_progress>h1 {
             font-size: 150px;
         }
 
+        /* Ajusta largura da linha do tempo dentro da carreira / Adjusts timeline width inside career */
         #career_progress>.horizontal_timeline>.timeline-section {
             width: 100%;
         }
 
+        /* Lado direito da seção de carreira (Contato) / Right side of career section (Contact) */
         #contact_side {
             width: 40%;
             background-color: #333;
         }
 
+        /* Container interno da seção de contato / Inner container of contact section */
         #contact {
             padding: 20px;
         }
 
+        /* Título da seção de contato / Contact section title */
         #contact>h1 {
             text-align: center;
             font-size: 50px;
         }
 
-        /* Contact Section Styling */
+        /* Estilização da área Lateral de Contato / Styling of Contact Side Area */
         #contact_side {
             width: 40%;
             background-color: #333;
@@ -358,16 +412,17 @@
             flex-direction: column;
         }
 
+        /* Layout da área de contato principal / Main contact area layout */
         #contact {
             padding: 40px;
             display: flex;
             flex-direction: column;
             gap: 30px;
             flex-grow: 1;
-            /* Pushes footer to the bottom */
+            /* Empurra o rodapé para o final / Pushes footer to the bottom */
         }
 
-
+        /* Container dos links de redes sociais / Container for social media links */
         .social-media-links {
             display: flex;
             justify-content: center;
@@ -375,26 +430,31 @@
             margin-bottom: 20px;
         }
 
+        /* Links individuais de redes sociais / Individual social media links */
         .social-media-links a {
             display: block;
             transition: transform 0.3s ease;
         }
 
+        /* Efeito de zoom ao passar o mouse no link social / Zoom effect on social link hover */
         .social-media-links a:hover {
             transform: scale(1.1);
         }
 
+        /* Ícone das redes sociais / Social media icon */
         .social-icon {
             height: 50px;
             width: auto;
         }
 
+        /* Formulário de contato / Contact form */
         #contact-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
+        /* Título do formulário de contato / Contact form title */
         #contact-form h2 {
             font-size: 30px;
             text-align: center;
@@ -402,6 +462,7 @@
             color: #fff;
         }
 
+        /* Estilo dos campos de entrada (input e textarea) / Style of input fields (input and textarea) */
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -413,11 +474,13 @@
             font-size: 16px;
         }
 
+        /* Área de texto permite redimensionamento vertical / Textarea allows vertical resizing */
         .form-group textarea {
             resize: vertical;
             height: 100px;
         }
 
+        /* Botão de envio do formulário / Form submit button */
         .submit-btn {
             background-color: #749fc0;
             color: white;
@@ -430,11 +493,12 @@
             transition: background-color 0.3s ease;
         }
 
+        /* Efeito hover no botão de envio / Hover effect on submit button */
         .submit-btn:hover {
             background-color: #5a82a0;
         }
 
-        /* Footer inside Contact Side */
+        /* Rodapé dentro da área de contato / Footer inside contact side */
         footer {
             background-color: #5a82a0;
             text-align: center;
@@ -444,23 +508,27 @@
             /* Ensures padding doesn't affect width */
         }
 
+        /* === MEDIA QUERY: Responsividade para Tablets e Celulares (max-width: 1200px) === */
+        /* === MEDIA QUERY: Responsiveness for Tablets and Mobiles (max-width: 1200px) === */
         @media (max-width: 1200px) {
 
-            /* General Navigation */
+            /* Navegação Geral: Ajusta altura e padding / General Navigation: Adjusts height and padding */
             #Nav_Bar {
                 padding: 0 20px;
                 height: 80px;
             }
 
+            /* Reduz tamanho da fonte dos links da nav / Reduces font size of nav links */
             #Nav_Bar>a {
                 font-size: 16px;
             }
 
+            /* Reduz tamanho do ícone na nav / Reduces icon size in nav */
             #GuiMLima_Icon {
                 height: 60px;
             }
 
-            /* About Section */
+            /* Seção Sobre: Muda para coluna invertida (imagem acima do texto) / About Section: Change to column-reverse (image above text) */
             #sobre {
                 flex-direction: column-reverse;
                 /* Image above text */
@@ -469,6 +537,7 @@
                 padding-bottom: 30px;
             }
 
+            /* Ajusta largura da descrição para 100% / Adjusts description width to 100% */
             #Lima_Description {
                 width: 100%;
                 text-align: center;
@@ -476,10 +545,19 @@
                 box-sizing: border-box;
             }
 
+            /* Reduz tamanho do título principal / Reduces main title size */
             #Lima_Description>h1 {
                 font-size: 40px;
             }
 
+            /* Organiza os links sociais horizontalmente / Organizes social links horizontally */
+            #Description_Links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            /* Centraliza a imagem de perfil e ajusta largura / Centers profile image and adjusts width */
             #image {
                 width: 100%;
                 text-align: center;
@@ -488,135 +566,123 @@
                 justify-content: center;
             }
 
+            /* Limita largura da imagem de perfil / Limits profile image width */
             #image img {
                 max-width: 80%;
                 height: auto;
             }
 
-            #Description_Links {
-                display: flex;
-                justify-content: center;
-                gap: 15px;
-            }
-
+            /* Reduz altura dos ícones de link / Reduces link icons height */
             .Link_Image {
                 height: 80px;
             }
 
 
-            /* Projects Section */
+            /* Seção de Projetos: Título menor e centralizado / Projects Section: Smaller and centered title */
             #projects_abilities>h1 {
                 font-size: 50px;
                 /* Reduced specific font size */
                 text-align: center;
             }
 
+            /* Projetos em coluna (imagem em cima da descrição) / Projects in column (image above description) */
             .project {
                 flex-direction: column-reverse;
-                /* Image above description as requested: "project_Image might be up of project_Description" -> Plan said column, but request said image UP. 
-                Wait, default is row. 
-                DOM structure:
-                <div class="project">
-                    <div class="project_Image">...</div>
-                    <div class="project_Description">...</div>
-                </div>
-                If I want image UP, that is normal column order. The user said "project_Image might be up of project_Description".
-                If I use column-reverse, Description comes first. 
-                So I should use 'column'. 
-                Wait, let's re-read user request: "project_Image might be up of project_Description."
-                Current HTML order: project_Image, project_Description.
-                So `flex-direction: column` puts Image on top. Correct.
-                */
-                flex-direction: column;
                 align-items: center;
             }
 
+            /* Imagem e descrição ocupam 100% da largura / Image and description take 100% width */
             .project_Image,
             .project_Description {
                 width: 100%;
             }
 
-            .project_Image_Text {
+            /* Desativa a sobreposição (overlay) e mostra como texto estático / Disables overlay and shows as static text */
+            .overlay {
+                position: static;
+                height: auto;
+                background-color: transparent;
+                margin-top: 10px;
                 display: flex;
-                overflow: hidden;
-                top: 0;
-                bottom: 0;
-                width: 100%;
-                justify-content: space-between;
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
+                gap: 10px;
             }
 
-            .project_Image_Text>p {
-                font-size: 20px;
-                padding-bottom: 10px;
-                font-weight: bolder;
+            /* Estilo dos links de projeto em modo móvel / Project link style in mobile mode */
+            .text_Link {
+                color: #324757;
+                background-color: white;
+                /* Make it look like a button or badge if desired, or just text */
+                padding: 5px 10px;
+                border: 1px solid #324757;
+                border-radius: 5px;
             }
 
+            /* Centraliza a descrição do projeto / Centers project description */
             .project_Description {
                 text-align: center;
                 margin-top: 20px;
             }
 
+            /* Reduz tamanho do título da descrição / Reduces description title size */
             .project_Description>h2 {
                 font-size: 35px;
             }
 
-            /* Academic Profile */
+            /* Perfil Acadêmico: Título menor / Academic Profile: Smaller title */
             #academic_profile>h1 {
                 font-size: 60px;
                 text-align: center;
             }
 
+            /* Linha do tempo vertical (coluna) / Vertical timeline (column) */
             .horizontal_timeline {
                 flex-direction: column;
             }
 
+            /* Seções da linha do tempo ocupam 100% / Timeline sections take 100% */
             .timeline-section {
                 width: 100%;
             }
 
+            /* Título da seção da linha do tempo menor / Smaller timeline section title */
             .timeline-section>h2 {
                 text-align: center;
                 font-size: 40px;
             }
 
-            /* "Graduação have to be up of cursos."
-               HTML structure:
-               <section class="horizontal_timeline">
-                   <div class="timeline-section"> <!-- Graduação -->
-                   <div class="timeline-section"> <!-- Cursos -->
-               </section>
-               So `flex-direction: column` maintains this order. Correct.
-            */
-
-
-            /* Career Section */
+            /* Carreira em coluna flexível / Career in flex column */
             #career {
                 flex-direction: column;
             }
 
+            /* Progresso da carreira ocupa 100% / Career progress takes 100% */
             #career_progress {
                 width: 100%;
                 box-sizing: border-box;
             }
 
+            /* Título da carreira menor / Smaller career title */
             #career_progress>h1 {
                 font-size: 60px;
                 text-align: center;
             }
 
+            /* Lado do contato ocupa 100% / Contact side takes 100% */
             #contact_side {
                 width: 100%;
             }
 
-            /* Adjust input fields for mobile */
+            /* Ajusta tamanho da fonte dos inputs para evitar zoom no iOS / Adjusts input font size to prevent iOS zoom */
             .form-group input,
             .form-group textarea {
                 font-size: 16px;
                 /* Prevents zoom on iOS */
             }
 
-            /* Fix timeline overflow on mobile */
+            /* Corrige padding do container da timeline no mobile / Fixes timeline container padding on mobile */
             .timeline-container {
                 padding-left: 10px;
                 padding-right: 10px;
@@ -662,10 +728,9 @@
             <div class="project">
                 <div class="project_Image">
                     <img src="images/QrCode_Icon.png" alt="">
-                    <div class="project_Image_Text">
-                        <p>Em andamento</p>
-                        <a href="https://www.github.com/GuiMLima/QrCode-cv-scanner" class="text_Link">Ver meu
-                            trabalho</a>
+                    <div class="overlay">
+                        <div class="text_Link" href="https://www.github.com/GuiMLima/QrCode-cv-scanner">Veja meu
+                            trabalho</div>
                     </div>
                 </div>
                 <div class="project_Description">
