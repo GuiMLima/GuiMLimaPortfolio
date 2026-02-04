@@ -118,6 +118,7 @@
             border-radius: 50%;
         }
 
+
         /*---------------------------------------------*/
 
         /*Projects Section*/
@@ -125,11 +126,44 @@
         /* Espaçamento interno da seção de projetos e habilidades / Padding for projects and abilities section */
         #projects_abilities {
             padding: 20px;
+            overflow: hidden; /* Hide overflow for carousel */
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Tamanho da fonte do título da seção de projetos / Font size for projects section title */
         #projects_abilities>h1 {
             font-size: 120px;
+            text-align: center;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            cursor: grab; /* Cursor indicates draggable */
+        }
+        
+        .carousel-container:active {
+            cursor: grabbing;
+        }
+
+        /* Track for slides */
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            /* Will be moved by JS transform */
+            will-change: transform; 
+        }
+
+        /* Individual Slide Item */
+        .project-slide {
+            min-width: 100%; /* Each slide takes full width of container */
+            box-sizing: border-box;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
         }
 
         /* Container flexível para os itens do projeto / Flex container for project items */
@@ -138,41 +172,66 @@
             flex-direction: row;
             justify-content: space-between;
             flex-wrap: wrap;
+            width: 100%; /* Ensure it fills the slide */
+            max-width: 1200px; /* Max width for large screens */
+            align-items: center; /* Vertically center content */
+            padding: 20px; /* Internal padding */
+            border-radius: 20px; /* Optional: adds rounded corners to the project card itself if desired */
+        }
+
+        /* Alternating Backgrounds */
+        .project-slide:nth-child(even) {
+            background-color: #324757;
+            color: white; /* Default text color for dark bg */
+        }
+        
+        /* Ensure specific text elements in even slides are white */
+        .project-slide:nth-child(even) .project_Description h2, 
+        .project-slide:nth-child(even) .project_Description p,
+        .project-slide:nth-child(even) .timeline-year,
+        .project-slide:nth-child(even) .timeline-title {
+            color: white;
         }
 
         /* Container da imagem do projeto com posicionamento relativo / Project image container with relative positioning */
         .project_Image {
             width: 45%;
             position: relative;
+            display: flex;
+            justify-content: center; /* Center the image */
         }
 
         /* Estilo da imagem do projeto com bordas arredondadas / Project image style with rounded corners */
         .project_Image>img {
             display: block;
-            width: 100%;
+            width: 90%; /* User requested 90% */
             height: auto;
             border-radius: 15px;
+            pointer-events: none; /* Prevent default image dragging */
         }
 
-        /* Camada de sobreposição escura e transparente (inicialmente oculta) / Dark transparent overlay layer (initially hidden) */
+        /* Camada de sobreposição (Botão Permanente) */
         .overlay {
             position: absolute;
             bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background-color: rgba(50, 71, 87, 0.9);
-            overflow: hidden;
-            transition: height 0.5s ease;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; /* Match image width */
+            height: auto;
+            background-color: rgba(50, 71, 87, 0.95); /* Slightly darker/more opaque for readability */
+            padding: 15px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            pointer-events: auto; /* Ensure clickable */
+            z-index: 10;
         }
 
-        /* Expande a sobreposição para 50% da altura ao passar o mouse na imagem / Expands overlay to 50% height on image hover */
+        /* Remove hover expansion since it's permanent */
         .project_Image:hover .overlay {
-            height: 50%;
+            height: auto; 
         }
 
         /* Estilo do link 'Veja meu trabalho' dentro da sobreposição / Style of 'See my work' link inside overlay */
@@ -589,25 +648,30 @@
             .project {
                 flex-direction: column-reverse;
                 align-items: center;
+                width: 100%; /* Ensure project container is full width */
             }
 
             /* Imagem e descrição ocupam 100% da largura / Image and description take 100% width */
             .project_Image,
             .project_Description {
                 width: 100%;
+                max-width: 100%; /* Ensure no overflow */
+            }
+            
+            /* Ensure image fits inside */
+            .project_Image > img {
+                width: 90%; /* Keep 90% on mobile too */
+                height: auto;
+                object-fit: contain; /* Ensure full image is visible */
             }
 
             /* Desativa a sobreposição (overlay) e mostra como texto estático / Disables overlay and shows as static text */
+            /* UPDATED: Keep overlay visible over image on mobile too for consistency */
             .overlay {
-                position: static;
-                height: auto;
-                background-color: transparent;
-                margin-top: 10px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
+                position: absolute; /* Keep absolute */
+                width: 90%; /* Match image width */
+                padding: 10px 0;
+                /* Keep other styles from desktop definition */
             }
 
             /* Estilo dos links de projeto em modo móvel / Project link style in mobile mode */
@@ -615,9 +679,11 @@
                 color: #324757;
                 background-color: white;
                 /* Make it look like a button or badge if desired, or just text */
-                padding: 5px 10px;
+                padding: 10px 20px; /* Larger hit area */
                 border: 1px solid #324757;
                 border-radius: 5px;
+                font-size: 18px;
+                z-index: 10; /* Ensure on top */
             }
 
             /* Centraliza a descrição do projeto / Centers project description */
@@ -687,6 +753,28 @@
                 padding-left: 10px;
                 padding-right: 10px;
             }
+            
+            /* Hide non-active slides in mobile just in case, or let flex handle it */
+            .project-slide {
+                min-width: 100vw; /* Use viewport width to be sure */
+                padding: 0; /* Remove padding for edge-to-edge if desired, or keep small padding */
+            }
+            
+            .carousel-container {
+                width: 100vw; /* Ensure full viewport width */
+                margin-left: -20px; /* Counteract parent padding if needed, or adjust parent */
+                padding: 0;
+            }
+            
+            /* Reset parent padding for this section if needed */
+            #projects_abilities {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            
+            #projects_abilities > h1 {
+                padding: 0 20px; /* Bring back padding for title */
+            }
 
         }
     </style>
@@ -724,26 +812,52 @@
     </header>
     <main>
         <section id="projects_abilities">
-            <h1>Projetos e Habilidades</h1>
-            <div class="project">
-                <div class="project_Image">
-                    <img src="images/QrCode_Icon.png" alt="">
-                    <div class="overlay">
-                        <div class="text_Link" href="https://www.github.com/GuiMLima/QrCode-cv-scanner">Veja meu
-                            trabalho</div>
+            <h1>Projetos</h1>
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="project-slide">
+                        <div class="project">
+                            <div class="project_Image">
+                                <img src="images/DuoVist.jpg" alt="DuoVist Scanner">
+                                <div class="overlay">
+                                    <a class="text_Link" href="https://www.youtube.com/watch?v=4BxbWneDND4" target="_blank">Veja meu trabalho</a>
+                                </div>
+                            </div>
+                            <div class="project_Description">
+                                <h2>DuoVist Scanner</h2>
+                                <p>Sistema de Visão Computacional para leitura de QrCodes em tempo real, integrando via API para
+                                    validação de pedidos logísticos.</p>
+                                <h2>Tecnologias</h2>
+                                <p>Python</p>
+                                <h2>Ferramentas</h2>
+                                <p>OpenCV, pyzbar, Pandas</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="project_Description">
-                    <h2>QrCode-cv-scanner</h2>
-                    <p>Sistema de Visão Computacional para leitura de QrCodes em tempo real, integrando via API para
-                        validação de pedidos logísticos.</p>
-                    <h2>Linguagens</h2>
-                    <p>Python</p>
-                    <h2>Ferramentas</h2>
-                    <p>OpenCV</p>
+                    <div class="project-slide">
+                         <div class="project">
+                            <div class="project_Image">
+                                <img src="images/FAST.jpg" alt="FAST">
+                                <div class="overlay">
+                                    <a class="text_Link" href="https://youtu.be/8QKxyUuS4-g" target="_blank">Veja meu trabalho</a>
+                                </div>
+                            </div>
+                            <div class="project_Description">
+                                <h2>FAST - Farol Alerta de Segurança no Trânsito</h2>
+                                <p>Farol inteligente com sistema de alerta de segurança para notificar pedestres e motoristas sobre veículos em alta velocidade</p>
+                                <h2>Tecnologias</h2>
+                                <p>Python</p>
+                                <h2>Ferramentas</h2>
+                                <p>FASTAPI, SQLite</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
         <section id="academic_profile">
             <h1>Perfil Acadêmico</h1>
             <section class="horizontal_timeline">
@@ -890,6 +1004,98 @@
             </div>
         </section>
     </main>
+    <script>
+        // Carousel Functionality
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID;
+        let currentIndex = 0;
+
+        // Prevent Context Menu on long press
+        window.oncontextmenu = function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }
+
+        slides.forEach((slide, index) => {
+            const slideImage = slide.querySelector('img');
+            slideImage.addEventListener('dragstart', (e) => e.preventDefault());
+
+            // Touch Events
+            slide.addEventListener('touchstart', touchStart(index));
+            slide.addEventListener('touchend', touchEnd);
+            slide.addEventListener('touchmove', touchMove);
+
+            // Mouse Events
+            slide.addEventListener('mousedown', touchStart(index));
+            slide.addEventListener('mouseup', touchEnd);
+            slide.addEventListener('mouseleave', () => {
+                if(isDragging) touchEnd();
+            });
+            slide.addEventListener('mousemove', touchMove);
+        });
+
+        function touchStart(index) {
+            return function(event) {
+                currentIndex = index;
+                startPos = getPositionX(event);
+                isDragging = true;
+
+                // animationID = requestAnimationFrame(animation); // Optional real-time animation loop if needed
+                track.style.transition = 'none'; // Disable transition for direct binding
+            }
+        }
+
+        function touchEnd() {
+            isDragging = false;
+            const movedBy = currentTranslate - prevTranslate;
+
+            // Snap logic
+            if (movedBy < -100 && currentIndex < slides.length - 1) currentIndex += 1;
+
+            if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+
+            setPositionByIndex();
+            
+            // Re-enable transition for snapping effect
+            track.style.transition = 'transform 0.3s ease-out';
+        }
+
+        function touchMove(event) {
+            if (isDragging) {
+                const currentPosition = getPositionX(event);
+                currentTranslate = prevTranslate + currentPosition - startPos;
+                setSliderPosition();
+            }
+        }
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        function setSliderPosition() {
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        }
+
+        function setPositionByIndex() {
+            // Calculate width based on first slide (assuming they are same size)
+            // Or better, use track.offsetWidth which is container width for 100% slides
+            const slideWidth = slides[0].clientWidth;
+            currentTranslate = currentIndex * -slideWidth;
+            prevTranslate = currentTranslate;
+            setSliderPosition();
+        }
+        
+        // Handle Resize to keep position correct
+        window.addEventListener('resize', setPositionByIndex);
+
+    </script>
 </body>
 
 </html>
