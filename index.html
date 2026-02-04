@@ -777,6 +777,72 @@
             }
 
         }
+        
+        /* Carousel Navigation Dots */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .carousel-dot {
+            width: 15px;
+            height: 15px;
+            background-color: rgba(50, 71, 87, 0.4);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background-color: #324757;
+            transform: scale(1.2);
+        }
+
+        /* Mobile specific adjustments (Phone size) */
+        @media (max-width: 768px) {
+            #projects_abilities > h1,
+            #academic_profile > h1 {
+                font-size: 40px;
+            }
+
+            .carousel-dot {
+                width: 12px;
+                height: 12px;
+            }
+            
+            /* Smaller fonts for easy reading on phone */
+            #Lima_Description > h1 {
+                font-size: 32px;
+            }
+            
+            #Lima_Description > h2, 
+            .project_Description > h2 {
+                font-size: 24px;
+            }
+            
+            #Lima_Description > p,
+            .project_Description > p,
+            .timeline-desc {
+                font-size: 16px; 
+            }
+            
+            .text_Link {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+
+            /* Adjust timeline */
+            .timeline-section > h2 {
+                font-size: 30px;
+            }
+            
+            /* Career section adjustments */
+            #career_progress > h1 {
+                font-size: 40px;
+            }
+        }
     </style>
 </head>
 
@@ -801,7 +867,7 @@
                 <a href="https://www.linkedin.com/in/guilherme-marques-de-lima-0b5361219/" target="_blank">
                     <img src="images/Linkedin_Icon.png" alt="" class="Link_Image">
                 </a>
-                <a href="Guilherme Dev (1).pdf" download="curriculo.pdf">
+                <a href="Guilherme.pdf" download="curriculo.pdf">
                     <img src="images/CV_Icon.png" alt="" class="Link_Image">
                 </a>
             </nav>
@@ -844,7 +910,8 @@
                                 </div>
                             </div>
                             <div class="project_Description">
-                                <h2>FAST - Farol Alerta de Segurança no Trânsito</h2>
+                                <h2>FAST</h2>
+                                <h2>(Farol Alerta de Segurança no Trânsito)</h2>
                                 <p>Farol inteligente com sistema de alerta de segurança para notificar pedestres e motoristas sobre veículos em alta velocidade</p>
                                 <h2>Tecnologias</h2>
                                 <p>Python</p>
@@ -855,6 +922,7 @@
                     </div>
 
                 </div>
+                <div class="carousel-nav"></div>
             </div>
         </section>
 
@@ -1007,6 +1075,7 @@
     <script>
         // Carousel Functionality
         const track = document.querySelector('.carousel-track');
+        const nav = document.querySelector('.carousel-nav');
         const slides = Array.from(track.children);
         
         let isDragging = false;
@@ -1015,6 +1084,29 @@
         let prevTranslate = 0;
         let animationID;
         let currentIndex = 0;
+
+        // Create Dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                setPositionByIndex();
+            });
+            
+            nav.appendChild(dot);
+        });
+        
+        const dots = Array.from(nav.children);
+        
+        function updateDots() {
+            dots.forEach(dot => dot.classList.remove('active'));
+            if(dots[currentIndex]) {
+                dots[currentIndex].classList.add('active');
+            }
+        }
 
         // Prevent Context Menu on long press
         window.oncontextmenu = function(event) {
@@ -1025,7 +1117,7 @@
 
         slides.forEach((slide, index) => {
             const slideImage = slide.querySelector('img');
-            slideImage.addEventListener('dragstart', (e) => e.preventDefault());
+            if(slideImage) slideImage.addEventListener('dragstart', (e) => e.preventDefault());
 
             // Touch Events
             slide.addEventListener('touchstart', touchStart(index));
@@ -1084,16 +1176,26 @@
         }
 
         function setPositionByIndex() {
-            // Calculate width based on first slide (assuming they are same size)
-            // Or better, use track.offsetWidth which is container width for 100% slides
-            const slideWidth = slides[0].clientWidth;
+            // Calculate width based on container width to ensure full slide Movement
+            const slideWidth = track.parentElement.clientWidth; // Use container width
             currentTranslate = currentIndex * -slideWidth;
             prevTranslate = currentTranslate;
             setSliderPosition();
+            updateDots();
         }
         
         // Handle Resize to keep position correct
-        window.addEventListener('resize', setPositionByIndex);
+        window.addEventListener('resize', () => {
+             // Re-calculate position on resize without animation to avoid glitch
+             const slideWidth = track.parentElement.clientWidth;
+             currentTranslate = currentIndex * -slideWidth;
+             prevTranslate = currentTranslate;
+             track.style.transition = 'none';
+             setSliderPosition();
+             setTimeout(() => {
+                 track.style.transition = 'transform 0.3s ease-out';
+             }, 50);
+        });
 
     </script>
 </body>
