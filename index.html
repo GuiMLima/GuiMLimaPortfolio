@@ -843,6 +843,115 @@
                 font-size: 40px;
             }
         }
+
+        /* Desktop layout: scales with the viewport without changing tablet/mobile rules */
+        @media (min-width: 1201px) {
+            #Nav_Bar {
+                padding-left: clamp(30px, 4vw, 80px);
+                padding-right: clamp(30px, 4vw, 80px);
+                height: clamp(90px, 7vw, 120px);
+            }
+
+            #Nav_Bar > a {
+                font-size: clamp(24px, 2vw, 36px);
+            }
+
+            #GuiMLima_Icon {
+                height: clamp(100px, 9vw, 150px);
+            }
+
+            header {
+                margin-top: clamp(70px, 6vw, 100px);
+                padding: clamp(20px, 4vw, 70px);
+            }
+
+            #sobre {
+                min-height: clamp(600px, 42vw, 850px);
+                height: auto;
+                background-size: cover;
+                background-position: center;
+                gap: clamp(20px, 4vw, 80px);
+            }
+
+            #Lima_Description {
+                width: 55%;
+            }
+
+            #Lima_Description > h1 {
+                font-size: clamp(48px, 4.5vw, 84px);
+            }
+
+            #Lima_Description > h2 {
+                font-size: clamp(20px, 1.6vw, 30px);
+            }
+
+            #Lima_Description > p {
+                font-size: clamp(22px, 2vw, 36px);
+            }
+
+            #image {
+                width: 38%;
+                display: flex;
+                justify-content: center;
+            }
+
+            #image img {
+                width: min(100%, 600px);
+                height: auto;
+            }
+
+            #projects_abilities {
+                padding: clamp(20px, 3vw, 60px);
+            }
+
+            #projects_abilities > h1,
+            #academic_profile > h1,
+            #career_progress > h1 {
+                font-size: clamp(72px, 8vw, 150px);
+            }
+
+            .project {
+                width: min(100%, 1800px);
+                max-width: none;
+                padding: clamp(20px, 3vw, 60px);
+            }
+
+            .project_Image {
+                width: 45%;
+            }
+
+            .project_Description {
+                width: 50%;
+            }
+
+            .project_Description > h2 {
+                font-size: clamp(36px, 3.2vw, 60px);
+            }
+
+            .project_Description > p {
+                font-size: clamp(22px, 1.8vw, 34px);
+            }
+
+            .text_Link {
+                font-size: clamp(20px, 1.5vw, 28px);
+            }
+
+            #academic_profile {
+                padding: clamp(20px, 2vw, 40px);
+            }
+
+            .timeline-section > h2 {
+                font-size: clamp(48px, 5vw, 85px);
+            }
+
+            #career_progress {
+                padding: clamp(20px, 2vw, 40px);
+            }
+
+            #contact {
+                padding: clamp(30px, 4vw, 70px);
+            }
+        }
     </style>
 </head>
 
@@ -905,19 +1014,15 @@
                     <div class="project-slide">
                          <div class="project">
                             <div class="project_Image">
-                                <img src="images/FAST.jpg" alt="FAST">
-                                <div class="overlay">
-                                    <a class="text_Link" href="https://youtu.be/8QKxyUuS4-g" target="_blank">Veja meu trabalho</a>
-                                </div>
+                                <img src="images/MES.jpg" alt="MES">
                             </div>
                             <div class="project_Description">
-                                <h2>FAST</h2>
-                                <h2>(Farol Alerta de Segurança no Trânsito)</h2>
-                                <p>Farol inteligente com sistema de alerta de segurança para notificar pedestres e motoristas sobre veículos em alta velocidade</p>
+                                <h2>MES (Manufacturing Execution System)</h2>
+                                <p>Dashboard desenvolvida para análise de produtividade de máquinas industriais através de cálculos OEE.</p>
                                 <h2>Tecnologias</h2>
-                                <p>Python</p>
+                                <p>JavaScript</p>
                                 <h2>Ferramentas</h2>
-                                <p>FASTAPI, SQLite</p>
+                                <p>node-RED, VUE.js</p>
                             </div>
                         </div>
                     </div>
@@ -1019,7 +1124,7 @@
                                 <div class="timeline-item">
                                     <div class="timeline-dot"></div>
                                     <div class="timeline-content">
-                                        <span class="timeline-year">2024 - 2025</span>
+                                        <span class="timeline-year">FEV/2024 - JAN/2025</span>
                                         <span class="timeline-title">MAIA (Voluntário)</span>
                                         <span class="timeline-subtitle">Lince, UniFacens, Sorocaba, SP</span>
                                         <p class="timeline-desc">
@@ -1031,7 +1136,7 @@
                                 <div class="timeline-item">
                                     <div class="timeline-dot"></div>
                                     <div class="timeline-content">
-                                        <span class="timeline-year">2025 - 2026</span>
+                                        <span class="timeline-year">JAN/2025 - JAN/2026</span>
                                         <span class="timeline-title">Técnico de Help Desk TI</span>
                                         <span class="timeline-subtitle"> Gueddai, Sorocaba, SP</span>
                                         <p class="timeline-desc">
@@ -1048,7 +1153,7 @@
                                 <div class="timeline-item">
                                     <div class="timeline-dot"></div>
                                     <div class="timeline-content">
-                                        <span class="timeline-year">2026 - Presente</span>
+                                        <span class="timeline-year">MAR/2026 - OUT/2026</span>
                                         <span class="timeline-title">Estágio de Engenharia</span>
                                         <span class="timeline-subtitle"> Meta Automação, Sorocaba, SP</span>
                                         <p class="timeline-desc">
